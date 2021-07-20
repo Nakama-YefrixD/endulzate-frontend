@@ -577,10 +577,11 @@ agregarProductoDetalle(){
     })
 }
 
-eliminarProductoDetalle(numero){
+async eliminarProductoDetalle(numero){
    console.log(numero);
+   //miomio
 
-   this.setState({
+   await this.setState({
         cantidadProductosDetalle    : this.state.cantidadProductosDetalle-1
    })
 
@@ -590,14 +591,14 @@ eliminarProductoDetalle(numero){
    if (index > -1) {
         array.splice(index,1);
         console.log(array);    
-        this.setState({
+        await this.setState({
             arrayProductosDetalle: array
         })
    }
 
    var arrayProductosDetalleList = [];
 
-    this.state.productosDetalleList.map((data, posicion)=>{
+   await this.state.productosDetalleList.map((data, posicion)=>{
         if(data.idLista != numero){
             arrayProductosDetalleList    = [
                 ...arrayProductosDetalleList, 
@@ -620,7 +621,7 @@ eliminarProductoDetalle(numero){
         }
     })
 
-    this.setState({
+    await this.setState({
         productosDetalleList: arrayProductosDetalleList
     })
 
@@ -663,6 +664,8 @@ buscarCodigoProducto(codigo, posicion){
             if(descuento != 0){
                 this.state.productosDetalleList[posicion]['cantidadOferta']    = descuento['cantidad']
                 this.state.productosDetalleList[posicion]['nuevoPrecioOferta'] = descuento['nuevoPrecio']
+
+                this.state.productosDetalleList[posicion]['variosDescuentos'] = data['variosDescuentos']
             }else{
                 this.state.productosDetalleList[posicion]['cantidadOferta']    = 0
                 this.state.productosDetalleList[posicion]['nuevoPrecioOferta'] = 0
@@ -710,17 +713,49 @@ getCambioDescuentoVenta(e){
 }
 
 calcularSubTotalTotalDetalle(posicion, cantidad, precio){
-    console.log('cambioCalcular');
-    console.log(posicion)
-    console.log(cantidad)
-    console.log(precio)
+    // console.log('cambioCalcular');
+    // console.log(posicion)
+    // console.log(cantidad)
+    // console.log(precio)
 
     let precioCalcular;
     let descuento;
+
     if(cantidad >= this.state.productosDetalleList[posicion]['cantidadOferta'] && this.state.productosDetalleList[posicion]['cantidadOferta'] != 0  ){
-        this.state.productosDetalleList[posicion]['descuentoAplicado'] = 1;
-        precioCalcular  = this.state.productosDetalleList[posicion]['nuevoPrecioOferta'];
-        descuento       = ((precio - precioCalcular)*cantidad).toFixed(2);
+        // console.log('descuentos:')
+        // console.log(this.state.productosDetalleList[posicion]['variosDescuentos'])
+        // console.log(this.state.productosDetalleList[posicion]['variosDescuentos'].length)
+        if(this.state.productosDetalleList[posicion]['variosDescuentos'].length > 1){
+
+            let nuevaCantidadOferta = 0
+
+            for(let i = 0; i < this.state.productosDetalleList[posicion]['variosDescuentos'].length; i++){
+                if(cantidad == this.state.productosDetalleList[posicion]['variosDescuentos'][i]['cantidad']){
+                    // console.log('misma cantidad')
+                    nuevaCantidadOferta  = this.state.productosDetalleList[posicion]['variosDescuentos'][i]['cantidad'];
+                    precioCalcular  = this.state.productosDetalleList[posicion]['variosDescuentos'][i]['nuevoPrecio'];
+                    break;
+                }
+            }
+
+            this.state.productosDetalleList[posicion]['cantidadOferta']    = nuevaCantidadOferta
+            this.state.productosDetalleList[posicion]['nuevoPrecioOferta'] = precioCalcular
+
+            this.setState({
+                productosDetalleList : this.state.productosDetalleList
+            })
+
+            this.state.productosDetalleList[posicion]['descuentoAplicado'] = 1;
+            descuento       = ((precio - precioCalcular)*cantidad).toFixed(2);
+
+
+        }else{
+            this.state.productosDetalleList[posicion]['descuentoAplicado'] = 1;
+            precioCalcular  = this.state.productosDetalleList[posicion]['nuevoPrecioOferta'];
+            descuento       = ((precio - precioCalcular)*cantidad).toFixed(2);
+        }
+
+
 
     }else{
         this.state.productosDetalleList[posicion]['descuentoAplicado'] = 0;
@@ -1116,6 +1151,7 @@ render(){
                                                 subTotal                        ={data.subTotalProducto}
                                                 total                           ={data.totalProducto}
                                                 descuentoAplicado               ={data.descuentoAplicado}
+                                                variosDescuentos                ={data.variosDescuentos}
                                                 nuevoPrecioOferta               ={data.nuevoPrecioOferta}
                                                 calcularSubTotalTotalDetalle    ={this.calcularSubTotalTotalDetalle}
                                                 eliminarProductoDetalle         ={this.eliminarProductoDetalle} 
