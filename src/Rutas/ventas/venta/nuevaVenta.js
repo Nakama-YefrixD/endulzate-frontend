@@ -961,11 +961,11 @@ fetchAgregarVenta(imprimir){ //SI IMPRIMIR ES 1 IMPRIMIR, SI NO, NO IMPRIMIR
                             url,
                             {
                                 method: 'GET',
-                                headers: {
-                                    'Accept' : 'application/json',
-                                    'Content-Type': 'application/json',
-                                    'usuid'         : localStorage.getItem('usuid')
-                                }
+                                // headers: {
+                                //     'Accept' : 'application/json',
+                                //     'Content-Type': 'application/json',
+                                //     // 'usuid'         : localStorage.getItem('usuid')
+                                // }
                             }
                         )
                         .then(
