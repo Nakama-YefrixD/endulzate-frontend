@@ -1,6 +1,7 @@
 import React from 'react'
 import {Component} from 'react';
-
+import cogoToast from 'cogo-toast';
+import config from '../../../../config'
 
 class TB_filas_cajasVentas extends Component {
     
@@ -9,14 +10,72 @@ class TB_filas_cajasVentas extends Component {
         this.state ={
 
         }
+        this.fetchImprimirCaja = this.fetchImprimirCaja.bind(this)
     }
 
+    fetchImprimirCaja(){
+        let url = config.apiTicket+`/api/imprimir/cierreCaja/`+this.props.key;
+
+        cogoToast.loading(
+            <div>
+                <h4>IMPRIMIENDO CAJA N°{this.props.numeroCajaVenta}</h4>
+            </div>, 
+            {
+                position: 'top-right'
+            }
+            
+        )
+        .then(() => {
+            fetch(url,
+                {
+                    method: 'GET',
+                }
+            )
+            .then(response => response.json())
+            .then(data => {
+    
+                if(data['respuesta'] == true){
+                    cogoToast.success(
+                        <div>
+                            <h4>IMPRESIÓN CORRECTA</h4>
+                        </div>, 
+                        {
+                          position: 'top-right'
+                        }
+                    );
+                    this.props.fetchVentaDataTabla(1, '', '');
+    
+                }else{
+                    cogoToast.error(
+                        <div>
+                            <h4>HUBO UN PROBLEMA AL IMPRIMIR LA CAJA</h4>
+                        </div>, 
+                        {
+                          position: 'top-right'
+                        }
+                    );
+                }
+                
+            })
+            
+        });
+        
+    }
 
     render(){
         return(
             <tr>
                 <td>
                     <button 
+                        className="btn btn-rounded btn-fw btn-primary" 
+                        style={{background:'green'}}
+                        onClick={() => this.fetchImprimirCaja()}
+                        type="button" >
+                            <i className="mdi mdi-printer"></i>
+                    </button>
+
+                    <button 
+                        
                         className="btn btn-rounded btn-fw btn-primary" 
                         type="button" >
                             <i className="mdi mdi-eye"></i>
