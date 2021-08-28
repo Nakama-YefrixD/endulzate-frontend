@@ -93,7 +93,9 @@ class Almacen extends Component{
             stockCajaCerrarCaja:'',              cantidadProductosCerrarCaja:  '',
             precioCajaCerrarCaja:'',             nombreProductoCerrarCaja:     '',
             stockProductoCerrarCaja:'',          precioProductoCerrarCaja:     '',
-            cantidadCerrarCaja:'',               codeCerrarCaja:               ''
+            cantidadCerrarCaja:'',               codeCerrarCaja:               '',
+
+            paginaSeleccionadaTbVenta : 1
 
 
         };
@@ -974,6 +976,9 @@ class Almacen extends Component{
         }
 
       cambiarPaginate(number){
+          this.setState({
+            paginaSeleccionadaTbVenta : number
+          })
           console.log(number);
           fetch(
               config.api+`/almacen/tb_almacen?page=${number}&buscar=${this.state.estadoQuery}`,
@@ -1278,8 +1283,18 @@ class Almacen extends Component{
                         this.state.estadoBoton?
                         this.state.estadoBoton.map(task =>{
                             return (
-                                <button key={task}
-                                    className="btn btn-sm btn-secondary editar" type="button" onClick={()=>this.cambiarPaginate(task)}>{task}</button>
+                                <button 
+                                    style={
+                                        this.state.paginaSeleccionadaTbVenta == task
+                                        ?{background:'green'}
+                                        :{}
+                                    }
+                                    key={task}
+                                    className="btn btn-sm btn-secondary editar" 
+                                    type="button" 
+                                    onClick={()=>this.cambiarPaginate(task)}>{task}
+
+                                </button>
 
                             );
                          } )   : null
