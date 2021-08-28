@@ -14,7 +14,7 @@ class TB_filas_cajasVentas extends Component {
     }
 
     fetchImprimirCaja(){
-        let url = config.apiTicket+`/api/imprimir/cierreCaja/`+this.props.key;
+        let url = config.apiTicket+`/api/imprimir/cierreCaja/`+this.props.idCajaVenta;
 
         cogoToast.loading(
             <div>

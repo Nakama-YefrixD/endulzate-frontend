@@ -105,6 +105,7 @@ class TB_CajasVentas extends Component {
                                             return(
                                                     <TB_filas_cajasVentas 
                                                         key                             =   {data.idCajaVenta}
+                                                        idCajaVenta                     =   {data.idCajaVenta}
                                                         nombreUsuario                   =   {data.nombreUsuario}
                                                         nombreSurcursal                 =   {data.nombreSurcursal}
                                                         cierreCajaVenta                 =   {data.cierreCajaVenta}
