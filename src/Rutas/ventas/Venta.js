@@ -6,6 +6,7 @@ import VentaFactura from './ventaFactura';
 import NuevaVenta from './venta/nuevaVenta';
 import EliminarVenta from './eliminarVenta'
 import config from '../../config'
+import ImprimirVenta from './ImprimirVenta';
 
 class Venta extends Component {
     constructor(){
@@ -339,7 +340,14 @@ class Venta extends Component {
                                                     <td>{posicion}</td>
                                                     <td>{task.fechaVentas}</td>
                                                     <td>{task.nombreClientes}</td>
-                                                    <td>{task.nombreTiposcomprobante}</td>
+                                                    <td>
+                                                        {task.nombreTiposcomprobante}<br/>
+                                                        {
+                                                            task.tipoMoneda_id == 3
+                                                            ?<div style={{color:'blue'}}>TARJETA</div>
+                                                            :<div style={{color:'green'}}>EFECTIVO</div>
+                                                        }
+                                                    </td>
                                                     <td>{task.numeroVentas}</td>
                                                     <td>{task.estadoSunatVentas}</td>
                                                     <td>{task.subTotalVentas}</td>
@@ -370,7 +378,11 @@ class Venta extends Component {
                                                                 <i className="mdi mdi-eye"></i>
                                                         </a>
                                                         
-
+                                                        <ImprimirVenta 
+                                                            key                 = {task.idVentas} 
+                                                            idVenta             = {task.idVentas}
+                                                            fetchVentaDataTabla = {this.fetchVentaDataTabla}
+                                                        />
                                                         
                                                     </td>
                                                 </tr>
