@@ -148,7 +148,7 @@ agregarBotones(){
 }
 
 cambiarPagina(number){
-    fetch(config+`/ventas/tb_buscarProducto?page=${number}&buscar=${this.state.estadoQuery}`)
+    fetch(config.api+`/ventas/tb_buscarProducto?page=${number}&bprecio=${this.state.estadoQuery}`)
       .then(res => res.json())
       .then(data => {
           this.setState({productos_tb: data},()=>{
@@ -1406,7 +1406,9 @@ render(){
                                             ?this.state.estadoBoton.map(task =>{
                                                 return (
                                                     <button key={task}
-                                                        className="btn btn-sm btn-secondary editar" type="button" onClick={()=>this.cambiarPagina(task)}>{task}</button>
+                                                        className="btn btn-sm btn-secondary editar" 
+                                                        type="button" 
+                                                        onClick={()=>this.cambiarPagina(task)}>{task}</button>
 
                                                 );
                                             })   
