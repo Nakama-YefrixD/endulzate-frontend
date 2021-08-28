@@ -39,6 +39,7 @@ class ProductoAddDetalleComponent extends Component {
             <tr>
                 <td>
                     <input 
+                        autoComplete={"off"}
                         type="text" 
                         className="form-control " 
                         name="codigo[]" 

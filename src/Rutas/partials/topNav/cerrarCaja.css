@@ -1,0 +1,21 @@
+#Input-Cerrar-Caja{
+    width: 100%;    
+    border: 1px solid black;
+    padding-left: 10px;
+    color: black;
+}
+
+#Input-Cerrar-Caja:focus{
+    border: 1px solid black !important;
+}
+
+#Input-Cerrar-Caja-Error{
+    width: 100%;    
+    border: 1px solid red;
+    padding-left: 10px;
+    color: red;
+}
+
+#Input-Cerrar-Caja-Error:focus{
+    border: 1px solid red !important;
+}

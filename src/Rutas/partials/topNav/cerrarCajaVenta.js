@@ -1,7 +1,7 @@
 import React from 'react'
 import {Component} from 'react';
 import { Link } from 'react-router-dom'
-
+import './cerrarCaja.css'
 // Confirmar
 import confirmarFuncion from '../../extras/confirmarFuncion'
 
@@ -23,7 +23,9 @@ class CerrarCajaVentaComponente extends Component {
             colorToastDanger    : 'rgba(205,55,55,0.7)',
             colorToastSuccess   : 'rgba(76,208,76,0.7)',
             
-            imprimir            : 0
+            imprimir            : 0,
+
+            mostrarErrorInput : false
 
         }
         this.getCambioTotalCerro        = this.getCambioTotalCerro.bind(this);
@@ -34,8 +36,19 @@ class CerrarCajaVentaComponente extends Component {
     }
 
     getCambioTotalCerro(e){
+
         const {name , value} = e.target;
         
+        if(this.props.totalCierre != value){
+            this.setState({
+                mostrarErrorInput : true
+            })
+        }else{
+            this.setState({
+                mostrarErrorInput : false
+            })
+        }
+
         this.setState({
             totalCerro  : value
         })
@@ -217,13 +230,19 @@ class CerrarCajaVentaComponente extends Component {
                         <div className="form-group" >
                             <div className="row"> 
                                 <div className="col-12">
-                                    <label>Dinero para cerrar caja</label>
+                                    <label>Dinero para cerrar caja</label><br/>
                                     <input 
-                                        type        = "text" 
-                                        className   = "form-control"
+                                        type        = "number" 
+                                        
                                         onChange    = {this.getCambioTotalCerro}
                                         value       = {this.state.totalCerro}
                                         autoFocus
+                                        id={
+                                            this.state.mostrarErrorInput == true
+                                            ?"Input-Cerrar-Caja-Error"
+                                            :"Input-Cerrar-Caja"
+                                            
+                                        }
                                     />
                                 </div>
                             </div>
