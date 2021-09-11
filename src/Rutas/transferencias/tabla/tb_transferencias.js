@@ -15,6 +15,7 @@ class TB_Transferencias extends Component {
 
         this.confirmarEliminarTransferencia = this.confirmarEliminarTransferencia.bind(this);
         this.fetchEliminarTransferencia     = this.fetchEliminarTransferencia.bind(this);
+        this.fetchImprimirTransferencia     = this.fetchImprimirTransferencia.bind(this);
 
     }
 
@@ -100,6 +101,57 @@ class TB_Transferencias extends Component {
         
     }
 
+
+    // 
+    fetchImprimirTransferencia(idTransferencia){
+        let url = config.apiTicket+`/api/imprimir/transferencia/`+idTransferencia;
+
+        cogoToast.loading(
+            <div>
+                <h4>IMPRIMIENDO TRANSFERENCIA</h4>
+            </div>, 
+            {
+                position: 'top-right'
+            }
+            
+        )
+        .then(() => {
+            fetch(url,
+                {
+                    method: 'GET',
+                }
+            )
+            .then(response => response.json())
+            .then(data => {
+    
+                if(data['respuesta'] == true){
+                    cogoToast.success(
+                        <div>
+                            <h4>IMPRESIÓN CORRECTA</h4>
+                        </div>, 
+                        {
+                          position: 'top-right'
+                        }
+                    );
+    
+                }else{
+                    cogoToast.error(
+                        <div>
+                            <h4>HUBO UN PROBLEMA AL IMPRIMIR LA VENTA</h4>
+                        </div>, 
+                        {
+                          position: 'top-right'
+                        }
+                    );
+                }
+                
+            })
+            
+        });
+        
+    }
+    // 
+
     render(){
         return(
             // <div className="row">
@@ -165,6 +217,15 @@ class TB_Transferencias extends Component {
 
                                                                             className   = "btn waves-effect waves-light btn-rounded btn-danger">
                                                                                 <i className="mdi mdi-delete"></i>
+                                                                        </button>
+
+                                                                        <button 
+                                                                            style       = {{marginLeft:'10px', background:'green'}}
+                                                                            type        = "button" 
+                                                                            id          = "btn_venta"
+                                                                            onClick     = {() => this.fetchImprimirTransferencia(data.idTransferencia)}
+                                                                            className   = "btn btn-danger btn-rounded btn-fw">
+                                                                                <i className="mdi mdi-printer"></i>
                                                                         </button>
                                                                     </div>
                                                                 </td>

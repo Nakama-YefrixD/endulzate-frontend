@@ -67,6 +67,7 @@ class Top extends Component {
         this.modalRegistrarIngreso          = this.modalRegistrarIngreso.bind(this);
         this.activarToast                   = this.activarToast.bind(this);
         this.getTotalCierreCajaVenta        = this.getTotalCierreCajaVenta.bind(this);
+        this.fetchImprimirAlmacen        = this.fetchImprimirAlmacen.bind(this);
 
     }
     componentDidMount(){
@@ -462,6 +463,54 @@ class Top extends Component {
         });
     }
 
+    fetchImprimirAlmacen(){
+        let url = config.apiTicket+`/api/imprimir/almacen/`+localStorage.getItem('usuid');
+
+        cogoToast.loading(
+            <div>
+                <h4>IMPRIMIENDO ALMACEN</h4>
+            </div>, 
+            {
+                position: 'top-right'
+            }
+            
+        )
+        .then(() => {
+            fetch(url,
+                {
+                    method: 'GET',
+                }
+            )
+            .then(response => response.json())
+            .then(data => {
+    
+                if(data['respuesta'] == true){
+                    cogoToast.success(
+                        <div>
+                            <h4>IMPRESIÓN CORRECTA</h4>
+                        </div>, 
+                        {
+                          position: 'top-right'
+                        }
+                    );
+    
+                }else{
+                    cogoToast.error(
+                        <div>
+                            <h4>HUBO UN PROBLEMA AL IMPRIMIR LA VENTA</h4>
+                        </div>, 
+                        {
+                          position: 'top-right'
+                        }
+                    );
+                }
+                
+            })
+            
+        });
+        
+    }
+
     render(){
         return(
             <header className="topbar">
@@ -504,6 +553,23 @@ class Top extends Component {
                             </li>
                         </ul>
                         <ul className="navbar-nav float-right">
+                            <li className="nav-item ">
+                                <div className="nav-link dropdown-toggle waves-effect waves-dark" aria-expanded="false">
+                                    <button 
+                                        type="button" 
+                                        className="btn waves-effect waves-light btn-rounded btn-warning"
+                                        onClick={
+                                            this.fetchImprimirAlmacen
+                                        }
+                                        style={{
+                                            background:'green',
+                                            color:'white'
+                                        }}
+                                    >
+                                            Imprimir Almacen
+                                    </button>
+                                </div>
+                            </li>
                             <li className="nav-item ">
                                 <div className="nav-link dropdown-toggle waves-effect waves-dark" aria-expanded="false">
                                     <button 
