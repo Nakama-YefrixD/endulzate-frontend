@@ -122,7 +122,8 @@ class CerrarCajaVentaComponente extends Component {
                         });
 
                         if(this.state.imprimir == 1){
-                            let url = `http://localhost/api/imprimir/cierreCaja/`+data['idCaja'];
+                            // let url = `http://localhost/api/imprimir/cierreCaja/`+data['idCaja'];
+                            let url = config.apiTicket+`api/imprimir/cierreCaja/`+data['idCaja'];
                             cogoToast.loading(
                                 <div>
                                     <h4>IMPRIMIENDO CIERRE DE CAJA</h4>

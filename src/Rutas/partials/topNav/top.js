@@ -281,7 +281,8 @@ class Top extends Component {
                     });
 
                     if(imprimir == 1){
-                        let url = `http://localhost/api/imprimir/aperturarCaja/`+data['idCaja'];
+                        // let url = `http://localhost/api/imprimir/aperturarCaja/`+data['idCaja'];
+                        let url = config.apiTicket+`/api/imprimir/aperturarCaja/`+data['idCaja'];
                         cogoToast.loading(
                             <div>
                                 <h4>IMPRIMIENDO APERTURA DE CAJA</h4>

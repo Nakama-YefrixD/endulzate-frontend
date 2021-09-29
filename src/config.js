@@ -3,7 +3,7 @@ export default {
     // apiTicket: 'https://pre-back.leadsmartview.com/',
 
     api: 'http://backend-endulzate.gavsistemas.com/',
-    apiTicket: 'http://localhost/',
+    apiTicket: 'http://127.0.0.1/',
 
     basename: '/',
     produccion: true
