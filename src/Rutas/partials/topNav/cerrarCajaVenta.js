@@ -37,9 +37,11 @@ class CerrarCajaVentaComponente extends Component {
 
     getCambioTotalCerro(e){
 
+        let numeros = parseFloat(this.props.totalCierre).toFixed(2)
+
         const {name , value} = e.target;
         
-        if(this.props.totalCierre != value){
+        if(numeros != value){
             this.setState({
                 mostrarErrorInput : true
             })
@@ -222,7 +224,7 @@ class CerrarCajaVentaComponente extends Component {
                                         this.props.loadModalCierreCajaVenta
                                         ?<Loading
                                         />
-                                        :<h4 className="card-title">{this.props.totalCierre } </h4>
+                                        :<h4 className="card-title">{parseFloat(this.props.totalCierre).toFixed(2) } </h4>
                                     }
                                     
                                 </div>
