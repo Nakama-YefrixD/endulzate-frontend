@@ -4,6 +4,7 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import cogoToast from 'cogo-toast';
 import config from '../../config'
+import axios from "axios";
 
 class ImprimirVenta extends Component {
     
@@ -23,7 +24,7 @@ class ImprimirVenta extends Component {
 
         cogoToast.loading(
             <div>
-                <h4>IMPRIMIENDO VENTA</h4>
+                <h4>IMPRIMIENDO VENTAS</h4>
             </div>, 
             {
                 position: 'top-right'
@@ -31,37 +32,38 @@ class ImprimirVenta extends Component {
             
         )
         .then(() => {
-            fetch(url,
-                {
-                    method: 'GET',
-                }
-            )
-            .then(response => response.json())
-            .then(data => {
+            axios.get(url)
+            // fetch(url,
+            //     {
+            //         method: 'GET',
+            //     }
+            // )
+            // .then(response => response.json())
+            // .then(data => {
     
-                if(data['respuesta'] == true){
-                    cogoToast.success(
-                        <div>
-                            <h4>IMPRESIÓN CORRECTA</h4>
-                        </div>, 
-                        {
-                          position: 'top-right'
-                        }
-                    );
-                    this.props.fetchVentaDataTabla(1, '', '');
+            //     if(data['respuesta'] == true){
+            //         cogoToast.success(
+            //             <div>
+            //                 <h4>IMPRESIÓN CORRECTA</h4>
+            //             </div>, 
+            //             {
+            //               position: 'top-right'
+            //             }
+            //         );
+            //         this.props.fetchVentaDataTabla(1, '', '');
     
-                }else{
-                    cogoToast.error(
-                        <div>
-                            <h4>HUBO UN PROBLEMA AL IMPRIMIR LA VENTA</h4>
-                        </div>, 
-                        {
-                          position: 'top-right'
-                        }
-                    );
-                }
+            //     }else{
+            //         cogoToast.error(
+            //             <div>
+            //                 <h4>HUBO UN PROBLEMA AL IMPRIMIR LA VENTA</h4>
+            //             </div>, 
+            //             {
+            //               position: 'top-right'
+            //             }
+            //         );
+            //     }
                 
-            })
+            // })
             
         });
         
