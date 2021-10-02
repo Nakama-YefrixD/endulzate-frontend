@@ -16,7 +16,7 @@ class TB_Transferencias extends Component {
         this.confirmarEliminarTransferencia = this.confirmarEliminarTransferencia.bind(this);
         this.fetchEliminarTransferencia     = this.fetchEliminarTransferencia.bind(this);
         this.fetchImprimirTransferencia     = this.fetchImprimirTransferencia.bind(this);
-
+        this.textInputTransferencia = React.createRef();
     }
 
     confirmarEliminarTransferencia(idTransferencia){
@@ -41,7 +41,7 @@ class TB_Transferencias extends Component {
     }
 
     fetchEliminarTransferencia(){
-        console.log(this.state.idTransferencia)
+        console.log(this.state.idTransferencia)     
         let url = config.api+`/almacen/transferencias/eliminar`;
         cogoToast.loading(
             <div>
@@ -105,7 +105,7 @@ class TB_Transferencias extends Component {
     // 
     fetchImprimirTransferencia(idTransferencia){
         let url = config.apiTicket+`/api/imprimir/transferencia/`+idTransferencia;
-
+        this.textInputTransferencia.current.click();
         cogoToast.loading(
             <div>
                 <h4>IMPRIMIENDO TRANSFERENCIA</h4>
@@ -227,6 +227,13 @@ class TB_Transferencias extends Component {
                                                                             className   = "btn btn-danger btn-rounded btn-fw">
                                                                                 <i className="mdi mdi-printer"></i>
                                                                         </button>
+
+                                                                        <a 
+                                                                            ref    = {this.textInputTransferencia}
+                                                                            href   = {config.apiTicket+`/api/imprimir/transferencia/`+data.idTransferencia}
+                                                                            target = "_blank" 
+                                                                            style={{display:'none'}}
+                                                                        ></a>
                                                                     </div>
                                                                 </td>
                                                                 

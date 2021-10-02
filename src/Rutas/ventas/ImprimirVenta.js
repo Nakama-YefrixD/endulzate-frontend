@@ -16,12 +16,13 @@ class ImprimirVenta extends Component {
             colorToastSuccess   : 'rgba(76,208,76,0.7)'
 
         }
+        this.textInput = React.createRef();
         this.fetchImprimirVenta       = this.fetchImprimirVenta.bind(this);
     }
 
     fetchImprimirVenta(){
         let url = config.apiTicket+`/api/imprimir/venta/`+this.props.idVenta;
-
+        this.textInput.current.click();
         cogoToast.loading(
             <div>
                 <h4>IMPRIMIENDO VENTAS</h4>
@@ -72,14 +73,24 @@ class ImprimirVenta extends Component {
 
     render(){
         return(
-            <button 
-                style       = {{marginLeft:'10px', background:'green'}}
-                type        = "button" 
-                id          = "btn_venta"
-                onClick     = {this.fetchImprimirVenta}
-                className   = "btn btn-danger btn-rounded btn-fw">
-                    <i className="mdi mdi-printer"></i>
-            </button>
+            <>
+                <button 
+                    style       = {{marginLeft:'10px', background:'green'}}
+                    type        = "button" 
+                    id          = "btn_venta"
+                    onClick     = {this.fetchImprimirVenta}
+                    className   = "btn btn-danger btn-rounded btn-fw">
+                        <i className="mdi mdi-printer"></i>
+                </button>
+                
+                <a 
+                    ref    = {this.textInput}
+                    href   = {config.apiTicket+`/api/imprimir/venta/`+this.props.idVenta}
+                    target = "_blank" 
+                    style={{display:'none'}}
+                ></a>
+            
+            </>
          ) 
     }
 }

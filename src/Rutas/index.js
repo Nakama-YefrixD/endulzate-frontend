@@ -22,7 +22,7 @@ import indexIngresos from './caja/gestionarIngresos/index'
 import CargaArchivos from './Configuracion/cargaArchivos/index'
 
 import CargarData from './almacenes/CargarData/CargarData'
-
+import CerrarPagina from './CerrarPagina'
 
 const index = () => {    
 
@@ -67,6 +67,7 @@ const index = () => {
                             )}
                         /> */}
 
+                        <Route path={`/cerrar-pagina`} component={CerrarPagina} exact />
                         <Route path={`/almacen`} component={Almacen} exact />
                         <Route path={`/almacen-transferencias`} component={indexTransferencias} />
                         <Route path={`/almacen-entrada`} component={Entrada} />

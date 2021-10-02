@@ -51,7 +51,13 @@ class Top extends Component {
 
             // LOADING
             loadModalCierreCajaVenta    : true,
+
+            idCajaSeleccionado : 0,
+            
         }
+        this.textInputAperturaCaja = React.createRef();
+        this.textInputAlmacen = React.createRef();
+
         this.modalAbrirCajaVenta    = this.modalAbrirCajaVenta.bind(this);
         this.modalCerrarCajaVenta   = this.modalCerrarCajaVenta.bind(this);
         this.getEstadoCajaVent      = this.getEstadoCajaVent.bind(this);
@@ -279,10 +285,13 @@ class Top extends Component {
                         // estadoModalAbrirCajaVenta  : !this.state.estadoModalAbrirCajaVenta,
                         totalAperturo              : '',
                         observacionesApertura      : '',
+                        idCajaSeleccionado : data['idCaja']
                     });
 
                     if(imprimir == 1){
                         // let url = `http://localhost/api/imprimir/aperturarCaja/`+data['idCaja'];
+
+                        this.textInputAperturaCaja.current.click();
                         let url = config.apiTicket+`/api/imprimir/aperturarCaja/`+data['idCaja'];
                         cogoToast.loading(
                             <div>
@@ -465,6 +474,8 @@ class Top extends Component {
     }
 
     fetchImprimirAlmacen(){
+        
+        this.textInputAlmacen.current.click();
         let url = config.apiTicket+`/api/imprimir/almacen/`+localStorage.getItem('usuid');
 
         cogoToast.loading(
@@ -515,6 +526,12 @@ class Top extends Component {
     render(){
         return(
             <header className="topbar">
+                <a 
+                    ref    = {this.textInputAlmacen}
+                    href   = {config.apiTicket+`/api/imprimir/almacen/`+localStorage.getItem('usuid')}
+                    target = "_blank" 
+                    style={{display:'none'}}
+                ></a>
                 <nav className="navbar top-navbar navbar-expand-md navbar-dark">
                     <div className="navbar-header">
                         <a className="nav-toggler waves-effect waves-light d-block d-md-none" href="#"><i className="ti-menu ti-close"></i></a>
@@ -715,6 +732,12 @@ class Top extends Component {
                                 <div className="form-group boton">
                                     <div className="row">
                                         <div className="col-6">
+                                            <a 
+                                                ref    = {this.textInputAperturaCaja}
+                                                href   = {config.apiTicket+`/api/imprimir/aperturarCaja/`+this.state.idCajaSeleccionado}
+                                                target = "_blank" 
+                                                style={{display:'none'}}
+                                            ></a>
                                             <button 
                                                 type="button" 
                                                 className="addexis form-control btn btn-block btn-success btn-lg" 

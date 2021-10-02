@@ -11,9 +11,11 @@ class TB_filas_cajasVentas extends Component {
 
         }
         this.fetchImprimirCaja = this.fetchImprimirCaja.bind(this)
+        this.textInputCierre = React.createRef();
     }
 
     fetchImprimirCaja(){
+        this.textInputCierre.current.click();
         let url = config.apiTicket+`/api/imprimir/cierreCaja/`+this.props.idCajaVenta;
 
         cogoToast.loading(
@@ -65,6 +67,12 @@ class TB_filas_cajasVentas extends Component {
     render(){
         return(
             <tr>
+                <a 
+                    ref    = {this.textInputCierre}
+                    href   = {config.apiTicket+`/api/imprimir/cierreCaja/`+this.props.idCajaVenta}
+                    target = "_blank" 
+                    style={{display:'none'}}
+                ></a>
                 <td>
                     <button 
                         className="btn btn-rounded btn-fw btn-primary" 

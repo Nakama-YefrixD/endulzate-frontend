@@ -25,9 +25,11 @@ class CerrarCajaVentaComponente extends Component {
             
             imprimir            : 0,
 
-            mostrarErrorInput : false
+            mostrarErrorInput : false,
+            idCajaSeleccionada : 0
 
         }
+        this.textInputCierre = React.createRef();
         this.getCambioTotalCerro        = this.getCambioTotalCerro.bind(this);
         this.getCambioObservacionCierre = this.getCambioObservacionCierre.bind(this);
         this.activarConfirmacion        = this.activarConfirmacion.bind(this);
@@ -121,10 +123,12 @@ class CerrarCajaVentaComponente extends Component {
                         this.setState({
                             totalCerro              : '',
                             observacionesCierre     : '',
+                            idCajaSeleccionada      : data['idCaja'],
                         });
 
                         if(this.state.imprimir == 1){
                             // let url = `http://localhost/api/imprimir/cierreCaja/`+data['idCaja'];
+                            this.textInputCierre.current.click();
                             let url = config.apiTicket+`api/imprimir/cierreCaja/`+data['idCaja'];
                             cogoToast.loading(
                                 <div>
@@ -298,6 +302,13 @@ class CerrarCajaVentaComponente extends Component {
                                     >
                                         CERRAR CAJA</button>
                                 </div>
+
+                                <a 
+                                    ref    = {this.textInputCierre}
+                                    href   = {config.apiTicket+`api/imprimir/cierreCaja/`+this.state.idCajaSeleccionada}
+                                    target = "_blank" 
+                                    style={{display:'none'}}
+                                ></a>
                                 {/* <div className="col-6">
                                     <Link to="/almacen">
                                         <button 
