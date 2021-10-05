@@ -128,7 +128,6 @@ class CerrarCajaVentaComponente extends Component {
 
                         if(this.state.imprimir == 1){
                             // let url = `http://localhost/api/imprimir/cierreCaja/`+data['idCaja'];
-                            this.textInputCierre.current.click();
                             let url = config.apiTicket+`api/imprimir/cierreCaja/`+data['idCaja'];
                             cogoToast.loading(
                                 <div>
@@ -186,6 +185,11 @@ class CerrarCajaVentaComponente extends Component {
                         // this.props.activarToast('Hubo un problema al momento de cerrar caja', this.state.colorToastDanger)
                     }
                     
+                })
+                .then(() => {
+                    if(this.state.imprimir == 1){
+                        this.textInputCierre.current.click();
+                    }
                 })
             }
         )
