@@ -1,34 +1,35 @@
 {
   "files": {
-    "main.css": "/static/css/main.4b0cca99.chunk.css",
-    "main.js": "/static/js/main.d8525b38.chunk.js",
-    "main.js.map": "/static/js/main.d8525b38.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.f7767d72.js",
-    "runtime-main.js.map": "/static/js/runtime-main.f7767d72.js.map",
+    "main.css": "/static/css/main.b260cbd6.chunk.css",
+    "main.js": "/static/js/main.7aa488d8.chunk.js",
+    "main.js.map": "/static/js/main.7aa488d8.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.a49f8212.js",
+    "runtime-main.js.map": "/static/js/runtime-main.a49f8212.js.map",
     "static/css/2.8679eaac.chunk.css": "/static/css/2.8679eaac.chunk.css",
-    "static/js/2.f775b91c.chunk.js": "/static/js/2.f775b91c.chunk.js",
-    "static/js/2.f775b91c.chunk.js.map": "/static/js/2.f775b91c.chunk.js.map",
-    "static/js/3.ac6be53a.chunk.js": "/static/js/3.ac6be53a.chunk.js",
-    "static/js/3.ac6be53a.chunk.js.map": "/static/js/3.ac6be53a.chunk.js.map",
+    "static/js/2.b0458c1e.chunk.js": "/static/js/2.b0458c1e.chunk.js",
+    "static/js/2.b0458c1e.chunk.js.map": "/static/js/2.b0458c1e.chunk.js.map",
+    "static/js/3.f46c5ceb.chunk.js": "/static/js/3.f46c5ceb.chunk.js",
+    "static/js/3.f46c5ceb.chunk.js.map": "/static/js/3.f46c5ceb.chunk.js.map",
     "index.html": "/index.html",
     "service-worker.js": "/service-worker.js",
     "service-worker.js.map": "/service-worker.js.map",
     "static/css/2.8679eaac.chunk.css.map": "/static/css/2.8679eaac.chunk.css.map",
-    "static/css/main.4b0cca99.chunk.css.map": "/static/css/main.4b0cca99.chunk.css.map",
-    "static/js/2.f775b91c.chunk.js.LICENSE.txt": "/static/js/2.f775b91c.chunk.js.LICENSE.txt",
-    "static/media/1.af3753e4.jpg": "/static/media/1.af3753e4.jpg",
+    "static/css/main.b260cbd6.chunk.css.map": "/static/css/main.b260cbd6.chunk.css.map",
+    "static/js/2.b0458c1e.chunk.js.LICENSE.txt": "/static/js/2.b0458c1e.chunk.js.LICENSE.txt",
+    "static/media/1.a8cf8f47.jpg": "/static/media/1.a8cf8f47.jpg",
     "static/media/Login.css": "/static/media/Poppins-SemiBold.5981b450.ttf",
     "static/media/bg-01.a13f3587.jpg": "/static/media/bg-01.a13f3587.jpg",
     "static/media/logo-icon.aa66cde1.png": "/static/media/logo-icon.aa66cde1.png",
     "static/media/logo-light-icon.99704e51.png": "/static/media/logo-light-icon.99704e51.png",
     "static/media/logo-light-text.981f470a.png": "/static/media/logo-light-text.981f470a.png",
-    "static/media/logo-text.ebec6fa3.png": "/static/media/logo-text.ebec6fa3.png"
+    "static/media/logo-text.ebec6fa3.png": "/static/media/logo-text.ebec6fa3.png",
+    "static/media/user.a8cf8f47.jpg": "/static/media/user.a8cf8f47.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.f7767d72.js",
+    "static/js/runtime-main.a49f8212.js",
     "static/css/2.8679eaac.chunk.css",
-    "static/js/2.f775b91c.chunk.js",
-    "static/css/main.4b0cca99.chunk.css",
-    "static/js/main.d8525b38.chunk.js"
+    "static/js/2.b0458c1e.chunk.js",
+    "static/css/main.b260cbd6.chunk.css",
+    "static/js/main.7aa488d8.chunk.js"
   ]
 }
